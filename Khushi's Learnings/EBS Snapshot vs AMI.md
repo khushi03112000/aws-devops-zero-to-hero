@@ -1,3 +1,57 @@
+### **How Does an EBS Snapshot Store Data?**  
+
+📌 **EBS Snapshots are Incremental, Not Full Copies**  
+An **EBS snapshot does not store the entire volume every time**. Instead, it works incrementally by storing only **the changes (deltas) made since the last snapshot**.  
+
+---
+
+## **🔹 How Snapshots Work?**
+1️⃣ **First Snapshot (Full Backup)**  
+   - When you create the first snapshot of a volume, AWS takes a **full copy** of the data.  
+   - Example: If the EBS volume has **250MB** of data, the **first snapshot is also ~250MB**.
+
+2️⃣ **Subsequent Snapshots (Incremental Backup)**  
+   - After the first snapshot, AWS only **saves the changed data (deltas)**.  
+   - Example: If you modify **50MB of data**, the next snapshot stores only those **50MB changes**, not the entire 250MB.
+
+3️⃣ **Restoration**  
+   - When restoring a volume from **any snapshot**, AWS **reconstructs it using the base snapshot + incremental changes**.  
+
+---
+
+## **🔹 Example of Incremental Storage**
+| **Snapshot** | **Size Stored** | **Reason** |
+|-------------|---------------|------------|
+| **Snapshot 1** | **250MB** | First full copy |
+| **Snapshot 2** | **50MB** | Only modified data |
+| **Snapshot 3** | **30MB** | Only modified data |
+
+🔹 Even though the **total volume size is still 250MB**, AWS **efficiently stores only the changes**.  
+
+---
+
+## **🔹 Key Benefits of Incremental Snapshots**
+✅ **Saves Storage Space** – No need to store full copies every time  
+✅ **Faster Backups** – Since only changes are stored, snapshot creation is quick  
+✅ **Efficient Restoration** – AWS automatically reconstructs the full volume  
+
+---
+
+## **🔹 How to Check Snapshot Size?**
+To check the snapshot size in AWS CLI:
+```bash
+aws ec2 describe-snapshots --snapshot-ids snap-xxxxxxxx
+```
+🔹 In the AWS Console, you’ll usually see a **size equal to the original volume** but **actual storage used is much less due to incremental storage**.
+
+---
+
+### **📌 Final Takeaway**
+🔹 First snapshot = **full copy of volume**  
+🔹 Next snapshots = **only changed data**  
+🔹 Restoring = AWS **rebuilds volume from snapshots**  
+
+Would you like a demo on how to create and restore snapshots? 🚀
 ### **Is an EBS Snapshot Similar to an AMI for EC2?**  
 
 📌 **EBS Snapshot and AMI are related but not the same.**  
