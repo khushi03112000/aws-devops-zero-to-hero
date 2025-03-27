@@ -313,3 +313,90 @@ So, **RDS Proxy keeps just the right number of connections open**—enough to ha
 ✅ **Handles More Requests with Fewer Connections** – 100 connections can serve thousands of users.  
 ✅ **Improves Failover Handling** – If the primary database fails, connections are maintained, avoiding application downtime.  
 
+### **Difference Between RDS Snapshots and Backups**  
+
+| Feature            | **RDS Automated Backups** | **RDS Manual Snapshots** |
+|--------------------|-------------------------|-------------------------|
+| **Creation**       | Automatically taken by AWS | Manually triggered by the user |
+| **Retention**      | Retained for up to **35 days** | Retained **indefinitely** until deleted manually |
+| **Storage Cost**   | Free up to the DB size, then extra cost | Charged based on storage used |
+| **Point-in-Time Recovery** | Yes, you can restore to any point within retention period | No, restores only to the exact snapshot time |
+| **Use Case**       | Disaster recovery, automatic daily backups | Long-term storage before making changes or migrations |
+| **Restoration**    | Creates a **new RDS instance** from backup | Creates a **new RDS instance** from snapshot |
+| **Includes Read Replicas?** | No | No |
+
+---
+
+### **🔹 RDS Backups (Automated Backups)**
+- Automatically enabled when you create an RDS instance.  
+- AWS takes **daily backups** of the database and stores **transaction logs**.  
+- You can **restore to any point** within the backup retention period (1 to 35 days).  
+- **Good for disaster recovery**.  
+
+✅ **Best for:** **Automatic recovery from failures**.  
+
+---
+
+### **🔹 RDS Snapshots (Manual Snapshots)**
+- Must be **manually created** by the user.  
+- Stored indefinitely until deleted.  
+- Cannot restore to a specific point in time—**only the moment the snapshot was taken**.  
+- Used for **migrations, version control before updates, or long-term archiving**.  
+
+✅ **Best for:** **Saving a specific database state before major changes**.  
+
+---
+
+### **🔹 When to Use What?**
+- **Use Backups** for **regular disaster recovery** (automatic, easy rollback).  
+- **Use Snapshots** before **major changes, upgrades, or migrations** (ensures a safe rollback point).  
+
+## **DynamoDB, Unstructured Data, and Non-Relational Databases Explained**  
+
+### **🔹 What is DynamoDB?**
+**Amazon DynamoDB** is a **fully managed NoSQL database service** provided by AWS. It is designed for **high availability, scalability, and low-latency performance**. Unlike traditional relational databases (like MySQL or PostgreSQL), DynamoDB is **non-relational** and follows a **key-value & document-based data model**.
+
+---
+
+## **🔹 What is Unstructured Data?**
+**Unstructured data** refers to **data that does not have a predefined schema** or rigid format. It can be **text, images, videos, logs, or JSON-like data**.  
+
+### **📝 Examples of Unstructured Data**
+- Social media posts  
+- IoT sensor data  
+- JSON documents  
+- Logs from an application  
+- Video or image metadata  
+
+Traditional relational databases require **structured data** with fixed rows & columns, but **NoSQL databases (like DynamoDB) handle unstructured data efficiently**.
+
+---
+
+## **🔹 What is a Non-Relational Database?**
+A **non-relational database (NoSQL)** does not store data in **tables, rows, and columns** like traditional relational databases (SQL-based). Instead, it organizes data in **key-value pairs, documents, graphs, or wide columns**.  
+
+### **📝 Key Characteristics of Non-Relational Databases**
+1️⃣ **Flexible Schema** – Data does not need a fixed structure; you can store different attributes for different records.  
+2️⃣ **Scalability** – Designed to handle massive amounts of data with horizontal scaling.  
+3️⃣ **High Performance** – Optimized for fast read/write operations.  
+4️⃣ **No Joins** – Unlike SQL databases, data is usually **denormalized** to avoid complex joins.  
+
+---
+
+## **🔹 Types of Non-Relational Databases**
+| **Type**            | **Example DBs**         | **Use Case** |
+|---------------------|------------------------|-------------|
+| **Key-Value Store** | DynamoDB, Redis        | Caching, session management |
+| **Document Store**  | MongoDB, CouchDB       | JSON/XML data, content management |
+| **Column Store**    | Cassandra, HBase       | Big data, analytics |
+| **Graph Database**  | Neo4j, Amazon Neptune  | Social networks, fraud detection |
+
+---
+
+## **🔹 Why Use DynamoDB (a Non-Relational DB)?**
+✅ **Fast performance with low latency**  
+✅ **Handles unstructured & semi-structured data**  
+✅ **Scales automatically** for high traffic  
+✅ **Serverless & managed by AWS**  
+✅ **No need to define a strict schema**  
+
