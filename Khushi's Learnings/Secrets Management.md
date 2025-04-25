@@ -39,6 +39,6 @@ Secrets management refers to the tools and methods used to manage digital authen
 
 ### Summary
 - **AWS Systems Manager:** Best for managing application configurations and secrets in a centralized location, especially within the AWS ecosystem.
-- **AWS Secrets Manager:** Ideal for securely storing and managing secrets with automatic rotation, particularly for AWS-based applications.
+- **AWS Secrets Manager:** Ideal for securely storing and managing secrets with **automatic rotation**, particularly for AWS-based applications, DB.
 - **HashiCorp Vault:** Suitable for advanced secrets management, dynamic secrets, and encryption in multi-cloud and hybrid environments.
 
